@@ -1,0 +1,4 @@
+.cardsHolder {
+  display: flex;
+  flex-direction: row;
+}

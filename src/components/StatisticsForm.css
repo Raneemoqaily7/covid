@@ -1,0 +1,80 @@
+[type="date"] {
+  background: #fff
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+body {
+  padding: 4em;
+  background: #e5e5e5;
+  font: 13px/1.4 Geneva, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode",
+    Verdana, sans-serif;
+}
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.selectCountry {
+  font-size: 13px;
+  width: 150px;
+  margin-right: 10px;
+}
+
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  margin-right: 10px;
+  height: 40px;
+}
+.grid-container {
+  display: inline-flex;
+  flex-flow: wrap;
+  grid-template-rows: auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.searchButton {
+  background-color: rgba(61, 86, 192, 255);
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  height: 45px;
+  color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+hr.new {
+  border-top: 1px dashed rgba(53, 53, 53, 0.361);
+  width: 100%;
+}
+.date {
+  font-weight: bold;
+}
+.cases {
+  font-family: cursive;
+  color: rgb(255, 0, 0);
+  padding: 10px;
+  font-size: 10px;
+}
