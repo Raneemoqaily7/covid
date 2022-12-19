@@ -1,17 +1,16 @@
 import "./Statistics.css";
 import React, { useEffect, useState } from "react";
 import TotalCard from "./TotalCard";
-
+import axios from 'axios';
 export default function Statistics() {
   const [totalConfirmed, setTotalConfirmed] = useState(undefined);
   const [totalDeaths, setTotalDeaths] = useState(undefined);
   const [totalRecovered, setTotalRecovered] = useState(undefined);
 
   useEffect(() => {
-    fetch("https://api.covid19api.com/world/total")
-      .then((response) => response.text())
-      .then((result) => {
-        var res = JSON.parse(result);
+    axios.get("http://127.0.0.1:8000/api/world/total")
+       .then((result) => {
+        var res= result.data
         setTotalConfirmed(res.TotalConfirmed);
         setTotalDeaths(res.TotalDeaths);
         setTotalRecovered(res.TotalRecovered);

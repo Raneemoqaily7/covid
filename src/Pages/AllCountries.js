@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ConfirmedCasesCard from "../components/ConfirmedCasesCard";
 import "../components/ConfirmedCasesCard.css";
@@ -11,31 +12,34 @@ export default function AllCountries() {
     var countriesData = data.Countries;
     setcountries(countriesData);
   }
+
   useEffect(() => {
     setIsLoading(true);
 
-    fetch("https://api.covid19api.com/summary")
-      .then((response) => response.text())
-      .then((result) => {
-        console.log(result, "22222");
-        if (JSON.parse(result).Countries) {
+    axios.get("http://127.0.0.1:8000/api/world/summary")
+       .then((result) => {
+        console.log(result, "result")
+         if (result.data.Countries) {
           setIsLoading(false);
-          handleAllCountriesResponse(JSON.parse(result));
+          handleAllCountriesResponse(result.data);
         } else {
           setIsLoading(false);
 
           setErrorMessage(
-            "Can't Load Data , Please try later...     \n" +
-              JSON.parse(result).Message
-          );
+            "Can't Load Data , Please try later...     \n"           );
         }
       })
       .catch((error) => {
         setIsLoading(false);
-        setErrorMessage("Can't Load Data , Please try later ...");
+        console.log(error,"error fetching data")
+        setErrorMessage(error + "Can't Load Data , Please try later ...");
       });
   }, []);
-  console.log(isLoading, "isLoading");
+ 
+  function AddToMyRecordsHandler(data){
+    console.log(data, "data clicked")
+    axios.post(`http://127.0.0.1:8000/api/addtomyrecords/${JSON.stringify(data)}`).then(res=> console.log(res,"res")).catch(err => console.log(err, "err"))
+  }
   return (
     <>
       {errorMessage && <div className="error">{errorMessage}</div>}
@@ -68,10 +72,13 @@ export default function AllCountries() {
                         Date: {new Date().toLocaleDateString()}
                       </div>
                       <hr className="new"></hr>
-
-                      <button className="AddToMyRecords">
+                      <button
+                        className="AddToMyRecords"
+                        onClick={()=> AddToMyRecordsHandler(e)}
+                      >
                         ADD TO MY RECORDS
                       </button>
+                       
                     </>
                   }
                 />

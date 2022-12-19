@@ -3,7 +3,7 @@ import Select from "react-select";
 import "./StatisticsForm.css";
 import LoadingSpinner from "./Loading";
 import ConfirmedCasesCard from "./ConfirmedCasesCard";
-
+import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 
 export default function StatisticsForm() {
@@ -32,21 +32,19 @@ export default function StatisticsForm() {
   }
 
   function confirmedCasesHandler(data) {
-    data = JSON.parse(data);
-    var confirmedCases = [];
+     var confirmedCases = [];
     data.map((e) => confirmedCases.push({ cases: e.Cases, date: e.Date }));
     setAllCountriesConfirmedCases(confirmedCases);
   }
+  
 
   function searchHandler() {
     var countrySlug = country.value;
     if (countrySlug) {
       setIsLoading(true);
-      var url = `https://api.covid19api.com/country/${countrySlug}/status/confirmed?from=${startDate}T00:00:00Z&to=${endDate}T00:00:00Z`;
-      fetch(url)
-        .then((response) => response.text())
-        .then((result) => {
-          confirmedCasesHandler(result);
+      var url = `http://127.0.0.1:8000/api/country/${countrySlug}/status/confirmed/from=${startDate}/to=${endDate}`;
+      axios.get(url).then((result) => {
+          confirmedCasesHandler(result.data);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -95,6 +93,7 @@ export default function StatisticsForm() {
           SEARCH
           <FaSearch style={{ marginLeft: "5px", marginTop: "5px" }} />
         </button>
+
       </div>
       <div>
         {isLoading ? (
