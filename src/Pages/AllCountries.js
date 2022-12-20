@@ -18,8 +18,7 @@ export default function AllCountries() {
 
     axios.get("http://127.0.0.1:8000/api/world/summary")
        .then((result) => {
-        console.log(result, "result")
-         if (result.data.Countries) {
+          if (result.data.Countries) {
           setIsLoading(false);
           handleAllCountriesResponse(result.data);
         } else {
@@ -32,12 +31,12 @@ export default function AllCountries() {
       .catch((error) => {
         setIsLoading(false);
         console.log(error,"error fetching data")
-        setErrorMessage(error + "Can't Load Data , Please try later ...");
+        setErrorMessage(  "Can't Load Data , Please try later ...");
       });
   }, []);
  
   function AddToMyRecordsHandler(data){
-    console.log(data, "data clicked")
+
     axios.post(`http://127.0.0.1:8000/api/addtomyrecords/${JSON.stringify(data)}`).then(res=> console.log(res,"res")).catch(err => console.log(err, "err"))
   }
   return (

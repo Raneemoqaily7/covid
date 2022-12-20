@@ -14,7 +14,16 @@
 
   margin: 20px;
 }
-
+.deleteButton{
+  background-color: rgba(61, 86, 192, 255);
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  height: 45px;
+  color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .date {
   color: rgba(231, 73, 122, 255);
 }
